@@ -1,0 +1,85 @@
+<div class="container">
+    <h1>Izmeni radnika</h1>
+    <form (ngSubmit)="onSubmit();" #forma="ngForm">
+    <div class="row">
+      
+          
+<div class="col-md-6"><div class="form-group">
+    <label for="ime">Ime:</label>
+    <input type="text" class="form-control" value="{{radnik.ime}}" placeholder="{{radnik.ime}}" id="ime" [(ngModel)]="radnik.ime" name="ime">
+  </div>
+
+  <div class="form-group">
+      <label for="prezime">Prezime:</label>
+      <input type="text" class="form-control" value="{{radnik.prezime}}" placeholder="{{radnik.prezime}}" id="prezime" [(ngModel)]="radnik.prezime" name="prezime">
+    </div>
+
+    <div class="form-group">
+        <label for="adresa">Adresa:</label>
+        <input type="text" class="form-control" value="{{radnik.adresa}}" placeholder="{{radnik.adresa}}" id="adresa" [(ngModel)]="radnik.adresa" name="adresa">
+      </div></div>
+              
+     
+  
+      
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="brojTelefona">Broj telefona:</label>
+              <input type="text" class="form-control" value="{{radnik.brojTelefona}}" placeholder="{{radnik.brojTelefona}}" id="brojTelefona"  [(ngModel)]="radnik.brojTelefona" name="brojTelefona">
+              
+            </div>
+  
+            <div class="form-group">
+                <label for="datumZaposlenja">Datum zaposlenja:</label>
+                <input type="text" class="form-control" value="{{dZaposlenja}}" placeholder="{{dZaposlenja}}"    id="datumZaposlenja" [(ngModel)]="dZaposlenja"  name="datumZaposlenja">
+              </div>
+  
+              <div class="form-group">
+                  <label for="datumRodjenja">Datum rodjenja:</label>
+                  <input type="text" class="form-control" value="{{dRodjenja}}" placeholder="{{dRodjenja}}"    id="datumRodjenja" [(ngModel)]="dRodjenja" name="datumRodjenja">
+                </div></div>
+                
+      
+
+        
+                <a [routerLink]="['/radnici']"><button class="btn btn-danger">Odustani</button></a>
+              <button type="submit" class="btn btn-success">Izmeni</button>
+  
+  </div>
+  <h1>{{s}}</h1>
+</form>  
+  <div class="row">
+    <div class="col">
+        <table class="table">
+            <tr>
+              
+          
+              <th>id</th>
+              <th>Radnik</th>
+              <th>Dosao</th>
+              <th>Otisao</th>
+              <th>Datum</th>
+              <th>Obrok</th>
+              
+              <th></th>
+              <th></th>
+            </tr>
+            <tr *ngFor="let d of dolasciIspis" id="{{d.id}}">
+              
+              <td>{{d.id}}</td>
+              <td>{{d.radnikId}}</td>
+              <td>{{d.dosaoUvreme}}</td>
+              <td>{{d.otisaoUvreme}}</td>
+              <td>{{d.otisaoUdatum}} - {{d.dosaoUdatum}}</td>
+              <td>{{d.obrok}}</td>
+              
+              <td><a [routerLink]="['/dolasci/edit/', d.id]">detalji</a></td>
+              <td><button type="button" (click)="Delete(d.id)" id="{{d.id}}">Delete</button></td>
+          
+            </tr> 
+          </table>
+    </div>
+  
+
+</div>
+</div>

@@ -1,0 +1,43 @@
+<div class="container">
+    <form (ngSubmit)="onSubmit();" #forma="ngForm">
+  <div class="row">
+
+      <div class="col-6">
+          
+              <div class="form-group">
+                <label for="dosaoU">Dosao u:</label>
+                <input type="text" placeholder="{{ispis.dosaoUvreme}}" value="{{ispis.dosaoUvreme}}" name="dosaoU" id="dosaoU" class="form-control" [(ngModel)]="ispis.dosaoUvreme">
+              </div>
+          
+              <div class="form-group">
+                <label for="otisaoU">Otisao u:</label>
+                <input type="text" placeholder="{{ispis.otisaoUvreme}}" value="{{ispis.otisaoUvreme}}" name="otisaoU" id="otisaoU" class="form-control" [(ngModel)]="ispis.otisaoUvreme">
+              </div>
+          
+              <div class="form-group">
+                <label for="obrok">Obrok:</label>
+                <input type="checkbox"   name="obrok" id="obrok" class="form-control" [(ngModel)]="isActive">
+              </div>
+              <input type="submit" class="btn btn-primary">
+            
+      </div>
+
+      <div class="col-6">
+          <div class="form-group">
+              <label for="datumDolaska">Datum dolaska:</label>
+              <input type="text" placeholder="{{ispis.dosaoUdatum}}" value="{{ispis.dosaoUdatum}}" name="datumDolaska" id="datumDolaska" class="form-control" [(ngModel)]="ispis.dosaoUdatum">
+            </div>
+
+            <div class="form-group">
+                <label for="datumOdlaska">Datum dolaska:</label>
+                <input type="text" placeholder="{{ispis.otisaoUdatum}}" value="{{ispis.otisaoUdatum}}" name="datumOdlaska" id="datumOdlaska" class="form-control" [(ngModel)]="ispis.otisaoUdatum">
+              </div>
+        
+      </div>
+    
+
+  </div>
+</form>
+  
+  {{isActive}}
+</div>

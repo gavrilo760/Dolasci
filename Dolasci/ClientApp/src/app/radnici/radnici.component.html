@@ -1,0 +1,38 @@
+<br>
+<h1>Radnici</h1>
+<br>
+<div class="table-wrapper-scroll-y">
+    <table class="table">
+        <tr>
+          
+      
+          <th>id</th>
+          <th>Ime</th>
+          
+          <th>Adresa</th>
+          <th>Broj telefona</th>
+          <th>Datum Rodjenja</th>
+          <th>Datum Zaposlenja</th>
+          <th></th>
+          <th></th>
+        </tr>
+        <tr *ngFor="let r of radniciIspis" id="{{r.id}}">
+          
+          <td>{{r.id}}</td>
+          <td>{{r.ime}} {{r.prezime}}</td>
+          
+          <td>{{r.adresa}}</td>
+          <td>{{r.brojTelefona}}</td>
+          <td>{{r.datumRodjenja}}</td>
+          <td>{{r.datumZaposlenja}}</td>
+          <td><a [routerLink]="['/radnici/edit/', r.id]"><button class="btn btn-info" (click) = "prebaci(r.id)">detalji</button></a></td>
+          <td><button type="button" class="btn btn-danger" (click)="Delete(r.id)" id="{{r.id}}">Delete</button></td>
+          
+        </tr>
+      </table>
+    </div>
+
+<br>
+<a [routerLink]="['/radnici/novi/']"><button class="btn btn-primary">Novi Radnik</button></a>
+
+

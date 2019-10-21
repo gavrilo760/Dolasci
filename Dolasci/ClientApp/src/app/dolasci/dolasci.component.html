@@ -1,0 +1,195 @@
+<br>
+<h1>Dolasci</h1>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Izmeni dolazak</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form (ngSubmit)="onSubmit();" id="formica" #forma="ngForm">
+        <div class="modal-body">
+          
+          
+              
+            <div class="row">
+          
+                <div class="col-6">
+                    
+                        <div class="form-group">
+                          <label for="dosaoU">Dosao u:</label>
+                          <input type="text" placeholder="{{ispis.dosaoUvreme}}" value="{{ispis.dosaoUvreme}}" name="dosaoU" id="dosaoU" class="form-control" [(ngModel)]="ispis.dosaoUvreme">
+                        </div>
+                    
+                        <div class="form-group">
+                          <label for="otisaoU">Otisao u:</label>
+                          <input type="text" placeholder="{{ispis.otisaoUvreme}}" value="{{ispis.otisaoUvreme}}" name="otisaoU" id="otisaoU" class="form-control" [(ngModel)]="ispis.otisaoUvreme">
+                        </div>
+                    
+                        <div class="form-check">
+                            <input type="checkbox"   name="obrok" id="obrok" class="form-check-input" [(ngModel)]="isActive">
+
+                          <label class="form-check-label" for="obrok">Obrok:</label>
+                        </div>
+                        
+                      
+                </div>
+          
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="datumDolaska">Datum dolaska:</label>
+                        <input type="text" placeholder="{{ispis.dosaoUdatum}}" value="{{ispis.dosaoUdatum}}" name="datumDolaska" id="datumDolaska" class="form-control" [(ngModel)]="ispis.dosaoUdatum">
+                      </div>
+          
+                      <div class="form-group">
+                          <label for="datumOdlaska">Datum odlaska:</label>
+                          <input type="text" placeholder="{{ispis.otisaoUdatum}}" value="{{ispis.otisaoUdatum}}" name="datumOdlaska" id="datumOdlaska" class="form-control" [(ngModel)]="ispis.otisaoUdatum">
+                        </div>
+                  
+                </div>
+              
+          
+            </div>
+          
+            
+            
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Odustani</button>
+          <button type="submit" id="dugme"   class="btn btn-primary">Sacuvaj promene</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+
+<div class="modal fade" id="brisiModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" >Brisanje</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <h6>Da li ste sigurni da zelite da obrisete dolazak/ske?</h6>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Odustani</button>
+        <button type="button" id="brisi" (click)="brisiModal()"  class="btn btn-primary">Brisi</button>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<div class="modal fade" id="brisiModalJednog" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" >Brisanje</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <h6>Da li ste sigurni da zelite da obrisete dolazak?</h6>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Odustani</button>
+        <button type="button" id="brisi" (click)="brisiModalJednog()"  class="btn btn-primary">Brisi</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-2" style="height: 700px; width: 100%;">
+    
+    
+      <div class="form-group">
+        <label for="radnik">Izaberite radnika:</label>
+        <select id="radnik" class="form-control"  name="radnik" [(ngModel)]="radnikId">
+          <option selected value="0">svi radnici</option>
+          <option *ngFor="let r of radnici" [ngValue]="r.id">{{r.ime}} {{r.prezime}}</option>
+        </select>
+        
+      </div>
+
+      <div class="form-group">
+        <label for="dan">Izaberite dan:</label>
+        <input class="form-control" min="0" max="31" name="dan" [(ngModel)]="dan" value="{{dan}}" type="number">
+      </div>
+
+      <div class="form-group">
+        <label for="mesec">Izaberite mesec:</label>
+        <input class="form-control" min="0" max="12" name="mesec" [(ngModel)]="mesec" value="{{mesec}}" type="number">
+      </div>
+
+      <div class="form-group">
+          <label for="godina">Izaberite godinu:</label>
+          <input class="form-control" name="godina"  [(ngModel)]="godina" value="{{godina}}" type="number">
+        </div>
+    
+
+    
+    
+      
+      <button class="btn btn-success" (click)="Get()">Primeni</button>
+      <br>
+      <br>
+      <br>
+      <a [routerLink]="['/dolasci/novi/']"><button id="noviDugme" class="btn btn-primary">Novi</button></a>
+      
+<button class="btn btn-danger"  (click)="prikaziModal()">Obrisi</button>
+  </div>
+  <div class="col-10">
+    <div *ngIf="dolasciIspis && dolasciIspis.length  > 0; else elseBlock">
+
+        <div style="max-height: 700px; width: 100%; overflow-y: scroll;">
+            <table class="table">
+        
+                <tr>
+                          
+                      <th><input type="checkbox" [(ngModel)]="checkiran"  (change)="glavniCheckbox()"></th>
+                    <th>id</th>
+                    <th>Radnik</th>
+                    <th>Dosao</th>
+                    <th>Otisao</th>
+                    <th>Datum</th>
+                    <th>Obrok</th>
+                    
+                    <th></th>
+                    <th></th>
+                  </tr>
+                  <tr *ngFor="let d of dolasciIspis" id="{{d.id}}">
+                    
+                    <td><input type="checkbox" [(ngModel)]="d.checkiran"  ></td>
+                    <td>{{d.id}}</td>
+                    <td>{{d.radnikIme}}</td>
+                    <td>{{d.dosaoUvreme}}</td>
+                    <td>{{d.otisaoUvreme}}</td>
+                    <td>{{d.dosaoUdatum}} - {{d.otisaoUdatum}}</td>
+                    <td>{{d.obrok}}</td>
+                    
+                    <td><button class="btn btn-info" data-toggle="modal" data-target="#exampleModal" (click)="odabir(d.id, d.radnikId, d.dosaoUdatum, d.dosaoUvreme, d.otisaoUdatum, d.otisaoUvreme, d.obrok)">izmeni</button></td>
+                    <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#brisiModalJednog" (click)="brisiJednog(d.id)" id="{{d.id}}">Delete</button></td>
+                
+                  </tr> 
+            </table></div>
+    </div>
+    <ng-template #elseBlock>
+      <h2>Nema dolazaka za odabrani datum</h2>
+    </ng-template>
+      
+  </div>
+  
+</div>
+
+<br>
+

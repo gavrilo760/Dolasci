@@ -1,0 +1,97 @@
+<br>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Izmeni dolazak</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form (ngSubmit)="onSubmit();" id="formica" #forma="ngForm">
+      <div class="modal-body">
+        
+        
+            
+          <div class="row">
+        
+              <div class="col-6">
+                  
+                      <div class="form-group">
+                        <label for="dosaoU">Dosao u:</label>
+                        <input type="text" placeholder="{{ispis.dosaoUvreme}}" value="{{ispis.dosaoUvreme}}" name="dosaoU" id="dosaoU" class="form-control" [(ngModel)]="ispis.dosaoUvreme">
+                      </div>
+                  
+                      <div class="form-group">
+                        <label for="otisaoU">Otisao u:</label>
+                        <input type="text" placeholder="{{ispis.otisaoUvreme}}" value="{{ispis.otisaoUvreme}}" name="otisaoU" id="otisaoU" class="form-control" [(ngModel)]="ispis.otisaoUvreme">
+                      </div>
+                  
+                      <div class="form-group">
+                        <label for="obrok">Obrok:</label>
+                        <input type="checkbox"   name="obrok" id="obrok" class="form-control" [(ngModel)]="isActive">
+                      </div>
+                      
+                    
+              </div>
+        
+              <div class="col-6">
+                  <div class="form-group">
+                      <label for="datumDolaska">Datum dolaska:</label>
+                      <input type="text" placeholder="{{ispis.dosaoUdatum}}" value="{{ispis.dosaoUdatum}}" name="datumDolaska" id="datumDolaska" class="form-control" [(ngModel)]="ispis.dosaoUdatum">
+                    </div>
+        
+                    <div class="form-group">
+                        <label for="datumOdlaska">Datum odlaska:</label>
+                        <input type="text" placeholder="{{ispis.otisaoUdatum}}" value="{{ispis.otisaoUdatum}}" name="datumOdlaska" id="datumOdlaska" class="form-control" [(ngModel)]="ispis.otisaoUdatum">
+                      </div>
+                
+              </div>
+            
+        
+          </div>
+        
+          
+          
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Odustani</button>
+        <button type="submit" id="dugme"   class="btn btn-primary">Sacuvaj promene</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+<h1>Podrazumevani dolasci</h1>
+
+<table class="table">
+    <tr>
+              
+          <th><input type="checkbox" [(ngModel)]="checkiran"  (change)="glavniCheckbox()"></th>
+        <th>id</th>
+        <th>Radnik</th>
+        <th>Dosao</th>
+        <th>Otisao</th>
+        <th>Datum</th>
+        <th>Obrok</th>
+        
+        <th></th>
+        <th></th>
+      </tr>
+      <tr *ngFor="let d of ispisi" id="{{d.id}}">
+        <td><input type="checkbox" [(ngModel)]="d.checkiran"  (change)="dodaj(d.id)"></td>
+        <td>{{d.id}}</td>
+        <td>{{d.radnikIme}}</td>
+        <td>{{d.dosaoUvreme}}</td>
+        <td>{{d.otisaoUvreme}}</td>
+        <td>{{d.otisaoUdatum}} - {{d.dosaoUdatum}}</td>
+        <td>{{d.obrok}}</td>
+        
+        <td><button class="btn btn-info" data-toggle="modal" data-target="#exampleModal" (click)="odabir(d.id, d.radnikId, d.dosaoUdatum, d.dosaoUvreme, d.otisaoUdatum, d.otisaoUvreme, d.obrok)">izmeni</button></td>
+        <td><button type="button" class="btn btn-danger"  id="{{d.id}}">Delete</button></td>
+    
+      </tr> 
+  </table>
+  <button class="btn btn-primary" (click)="unesi()">Unesi</button>
